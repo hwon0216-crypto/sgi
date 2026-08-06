@@ -174,5 +174,14 @@ brandLink?.addEventListener('click', event => {
     history.replaceState(null, '', window.location.pathname + window.location.search);
   }
 
+  // CSS의 scroll-behavior:smooth를 로고 클릭 순간에만 해제
+  const root = document.documentElement;
+  const previousScrollBehavior = root.style.scrollBehavior;
+
+  root.style.scrollBehavior = 'auto';
   window.scrollTo(0, 0);
+
+  requestAnimationFrame(() => {
+    root.style.scrollBehavior = previousScrollBehavior;
+  });
 });
