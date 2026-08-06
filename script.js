@@ -161,3 +161,22 @@ areaDownload?.addEventListener('click',event=>{
 if(window.SITE_CONFIG){
   document.documentElement.style.setProperty('--hero-image',`url("${SITE_CONFIG.heroImage}")`);
 }
+
+
+/* BRAND TOP RESET */
+const brandLink = document.querySelector('.brand');
+
+brandLink?.addEventListener('click', event => {
+  event.preventDefault();
+
+  dayLinks.forEach(link => link.classList.remove('active'));
+
+  if (history.replaceState) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
