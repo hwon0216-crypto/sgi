@@ -18,103 +18,59 @@ const dayObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(e
 document.querySelectorAll('.day-section').forEach(section=>dayObserver.observe(section));
 
 const galleries={};
-function buildGallery(day){const grid=document.querySelector(`[data-day="${day}"]`);if(!grid)return;const items=Array.isArray(galleryData[day])?galleryData[day]:[];galleries[day]=[];if(!items.length){grid.innerHTML='<div class="gallery-empty">사진 목록이 없습니다.<br>gallery-data.js를 다시 생성해 주세요.</div>';return}items.forEach((item,index)=>{const button=document.createElement('button');button.type='button';button.className='gallery-item';button.dataset.full=item.full;button.dataset.thumb=item.thumb;button.dataset.index=index;const img=document.createElement('img');img.src=item.thumb;img.alt='';img.loading='lazy';img.decoding='async';img.addEventListener('error',()=>{button.remove();if(!grid.querySelector('.gallery-item'))grid.innerHTML='<div class="gallery-empty">사진 파일을 찾을 수 없습니다.<br><b>assets/gallery</b> 폴더가 GitHub에 올라갔는지 확인해 주세요.</div>'});button.appendChild(img);button.addEventListener('click',()=>openLightbox(day,index));grid.appendChild(button);galleries[day].push(button)})}
+function buildGallery(day){
+  const grid=document.querySelector(`[data-day="${day}"]`);
+  if(!grid)return;
+
+  const items=Array.isArray(galleryData[day])?galleryData[day]:[];
+  if(!items.length){
+    grid.innerHTML='<div class="gallery-empty">사진 목록이 없습니다.<br>gallery-data.js를 다시 생성해 주세요.</div>';
+    return;
+  }
+
+  items.forEach((item,index)=>{
+    const link=document.createElement('a');
+    link.className='gallery-item';
+    link.href=item.full;
+    link.dataset.pswpSrc=item.full;
+    link.dataset.pswpWidth='2000';
+    link.dataset.pswpHeight='2000';
+    link.dataset.dayLabel=day.toUpperCase();
+    link.dataset.index=index;
+    link.target='_blank';
+    link.rel='noopener';
+
+    const img=document.createElement('img');
+    img.src=item.thumb;
+    img.alt='';
+    img.loading='lazy';
+    img.decoding='async';
+
+    img.addEventListener('load',()=>{
+      const width=img.naturalWidth||1;
+      const height=img.naturalHeight||1;
+
+      if(width>=height){
+        link.dataset.pswpWidth='2000';
+        link.dataset.pswpHeight=String(Math.max(1,Math.round(2000*height/width)));
+      }else{
+        link.dataset.pswpHeight='2000';
+        link.dataset.pswpWidth=String(Math.max(1,Math.round(2000*width/height)));
+      }
+    });
+
+    img.addEventListener('error',()=>{
+      link.remove();
+      if(!grid.querySelector('.gallery-item')){
+        grid.innerHTML='<div class="gallery-empty">사진 파일을 찾을 수 없습니다.<br><b>assets/gallery</b> 폴더가 GitHub에 올라갔는지 확인해 주세요.</div>';
+      }
+    });
+
+    link.appendChild(img);
+    grid.appendChild(link);
+  });
+}
+
 ['day1','day2','day3','day4','day5'].forEach(buildGallery);
 
 document.querySelectorAll('[data-download-day]').forEach(link=>{link.addEventListener('click',event=>{event.preventDefault();const day=link.dataset.downloadDay;const url=myboxLinks[day];if(url){window.open(url,'_blank','noopener,noreferrer')}else{alert(currentLanguage()==='ja'?'写真のダウンロードリンクは後日ご案内します。':'사진 다운로드 링크는 추후 안내될 예정입니다.')}})});
-
-const lightbox=document.getElementById('lightbox');const lightboxImage=document.getElementById('lightboxImage');const lightboxCounter=document.getElementById('lightboxCounter');const lightboxDay=document.getElementById('lightboxDay');const imagePan=document.getElementById('imagePan');const thumbStrip=document.getElementById('thumbStrip');const zoomValue=document.getElementById('zoomValue');let currentDay='day1',currentIndex=0,scale=1,tx=0,ty=0,touchX=0,touchY=0,dragging=false;
-function applyTransform(){imagePan.style.transform=`translate3d(${tx}px,${ty}px,0) scale(${scale})`;zoomValue.textContent=`${Math.round(scale*100)}%`}
-function setZoom(next){scale=Math.max(1,Math.min(4,next));if(scale===1){tx=0;ty=0}applyTransform()}
-function renderThumbs(){thumbStrip.innerHTML='';(galleries[currentDay]||[]).forEach((item,i)=>{const b=document.createElement('button');b.className='viewer-thumb'+(i===currentIndex?' active':'');b.innerHTML=`<img src="${item.dataset.thumb}" alt="">`;b.onclick=()=>showImage(i);thumbStrip.appendChild(b)});thumbStrip.querySelector('.active')?.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
-function showImage(index){const list=galleries[currentDay]||[];if(!list.length)return;currentIndex=(index+list.length)%list.length;setZoom(1);const item=list[currentIndex];lightboxImage.src=item.dataset.full;lightboxCounter.textContent=`${currentIndex+1} / ${list.length}`;lightboxDay.textContent=currentDay.toUpperCase();renderThumbs();[-1,1].forEach(offset=>{const p=new Image();p.src=list[(currentIndex+offset+list.length)%list.length].dataset.full})}
-function openLightbox(day,index){currentDay=day;lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';showImage(index)}
-function closeLightbox(){setZoom(1);lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');document.body.style.overflow='';lightboxImage.src=''}
-document.querySelector('.lightbox-close')?.addEventListener('click',closeLightbox);document.querySelector('.lightbox-nav.prev')?.addEventListener('click',()=>showImage(currentIndex-1));document.querySelector('.lightbox-nav.next')?.addEventListener('click',()=>showImage(currentIndex+1));document.getElementById('zoomIn')?.addEventListener('click',()=>setZoom(scale+.25));document.getElementById('zoomOut')?.addEventListener('click',()=>setZoom(scale-.25));document.getElementById('zoomReset')?.addEventListener('click',()=>setZoom(1));
-const stage=document.getElementById('lightboxStage');
-let pinchStartDistance=0;
-let pinchStartScale=1;
-let lastTapTime=0;
-
-function touchDistance(touches){
-  const dx=touches[0].clientX-touches[1].clientX;
-  const dy=touches[0].clientY-touches[1].clientY;
-  return Math.hypot(dx,dy);
-}
-
-stage?.addEventListener('dblclick',event=>{
-  event.preventDefault();
-  setZoom(scale>1?1:2);
-});
-
-stage?.addEventListener('touchstart',event=>{
-  if(event.touches.length===2){
-    pinchStartDistance=touchDistance(event.touches);
-    pinchStartScale=scale;
-    dragging=false;
-    return;
-  }
-
-  if(event.touches.length!==1)return;
-
-  const now=Date.now();
-  if(now-lastTapTime<300){
-    event.preventDefault();
-    setZoom(scale>1?1:2);
-    lastTapTime=0;
-    return;
-  }
-  lastTapTime=now;
-
-  touchX=event.touches[0].clientX;
-  touchY=event.touches[0].clientY;
-  dragging=scale>1;
-},{passive:false});
-
-stage?.addEventListener('touchmove',event=>{
-  if(event.touches.length===2&&pinchStartDistance){
-    event.preventDefault();
-    const ratio=touchDistance(event.touches)/pinchStartDistance;
-    setZoom(pinchStartScale*ratio);
-    return;
-  }
-
-  if(event.touches.length!==1||!dragging)return;
-
-  event.preventDefault();
-  const x=event.touches[0].clientX;
-  const y=event.touches[0].clientY;
-  tx+=x-touchX;
-  ty+=y-touchY;
-  touchX=x;
-  touchY=y;
-  applyTransform();
-},{passive:false});
-
-stage?.addEventListener('touchend',event=>{
-  if(event.touches.length<2){
-    pinchStartDistance=0;
-  }
-
-  if(scale>1){
-    dragging=false;
-    return;
-  }
-
-  const changed=event.changedTouches[0];
-  if(!changed)return;
-  const dx=changed.clientX-touchX;
-  if(Math.abs(dx)>45){
-    showImage(currentIndex+(dx<0?1:-1));
-  }
-});
-
-stage?.addEventListener('gesturestart',event=>event.preventDefault());
-stage?.addEventListener('gesturechange',event=>event.preventDefault());
-
-document.addEventListener('keydown',event=>{
-  if(!lightbox.classList.contains('open'))return;
-  if(event.key==='Escape')closeLightbox();
-  if(event.key==='ArrowLeft')showImage(currentIndex-1);
-  if(event.key==='ArrowRight')showImage(currentIndex+1);
-});

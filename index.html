@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@500;600;700&family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.css" />
 </head>
 <body class="locked">
   <section id="intro" class="intro" aria-labelledby="introTitle">
@@ -99,19 +100,9 @@
     <section class="farewell section-reveal"><div class="farewell-photo"><img src="assets/farewell.jpg" alt="마지막 단체 사진" onerror="this.closest('.farewell').classList.add('no-farewell')"></div><div class="farewell-overlay"></div><div class="farewell-copy"><p>SEE YOU AGAIN</p><h3 data-ko="다시 만날 날을<br>기다리겠습니다" data-ja="また会える日を<br>楽しみにしています">また会える日を<br>楽しみにしています</h3><span data-ko="함께해 주셔서 감사합니다." data-ja="共に過ごしてくださり、ありがとうございました。">共に過ごしてくださり、ありがとうございました。</span></div></section>
   </main>
 
-  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="viewer-topbar">
-      <div class="viewer-title"><b id="lightboxDay">DAY1</b><span id="lightboxCounter">1 / 1</span></div>
-      <div class="viewer-tools"><button id="zoomOut" type="button">−</button><button id="zoomReset" type="button"><span id="zoomValue">100%</span></button><button id="zoomIn" type="button">＋</button></div>
-      <button class="lightbox-close" type="button" aria-label="닫기">×</button>
-    </div>
-    <div class="lightbox-stage" id="lightboxStage"><div class="image-pan" id="imagePan"><img id="lightboxImage" src="" alt="확대 사진"></div><div class="lightbox-loader"></div></div>
-    <div id="thumbStrip" class="viewer-thumbs"></div>
-    <div class="viewer-bottom-nav"><button class="lightbox-nav prev" type="button">‹</button><button class="lightbox-nav next" type="button">›</button></div>
-  </div>
-
   <script src="mybox-links.js"></script>
   <script src="gallery-data.js"></script>
   <script src="script.js"></script>
+  <script type="module" src="photoswipe-viewer.js"></script>
 </body>
 </html>
