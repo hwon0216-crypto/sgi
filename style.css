@@ -691,3 +691,29 @@ h1,h2,h3,
   }
 }
 
+/* === INTRO TITLE NO-WRAP FIX === */
+.intro h1{
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+  font-size:clamp(28px,8vw,58px) !important;
+  line-height:1.25 !important;
+}
+
+/* 한국어 보조 제목도 한 줄 유지 */
+.intro-title-ko{
+  white-space:nowrap;
+  font-size:clamp(12px,3.5vw,18px);
+}
+
+/* 매우 작은 화면 */
+@media(max-width:360px){
+  .intro h1{
+    font-size:clamp(27px,7.8vw,30px) !important;
+  }
+
+  .intro-title-ko{
+    font-size:12px;
+  }
+}
+
