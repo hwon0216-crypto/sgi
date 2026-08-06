@@ -1,35 +1,24 @@
-
-/* =========================================================
-   HERO BACKGROUND (단체사진)
-   파일 위치 : assets/images/hero-group.jpg
-   ========================================================= */
+/* Hero background restore */
 
 .hero{
-    position:relative;
-    overflow:hidden;
+    position: relative;
+    overflow: hidden;
+
+    min-height: 100svh !important;
+    height: 100svh !important;
 
     background:
         linear-gradient(
             180deg,
-            rgba(12,33,66,.30) 0%,
-            rgba(18,44,82,.38) 45%,
-            rgba(18,44,82,.58) 100%
+            rgba(12,33,66,.22) 0%,
+            rgba(18,44,82,.32) 45%,
+            rgba(18,44,82,.46) 100%
         ),
         url("assets/images/hero-group.jpg")
         center center / cover no-repeat !important;
 }
 
+/* Remove blur */
 .hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    backdrop-filter:blur(1.5px);
-    -webkit-backdrop-filter:blur(1.5px);
-    pointer-events:none;
-}
-
-.hero-copy,
-.scroll-cue{
-    position:relative;
-    z-index:2;
+    display:none !important;
 }
