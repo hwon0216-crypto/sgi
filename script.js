@@ -11,13 +11,13 @@ function changeLanguage(lang){
   document.documentElement.lang=lang;
   document.querySelectorAll('[data-ko][data-ja]').forEach(el=>{el.innerHTML=el.dataset[lang]});
   langButtons.forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===lang));
-  document.title=lang==='ja'?'2026 東日本・韓国 青年交流団':'2026 동일본·한국 청년교류단';
+  document.title=(window.SITE_CONFIG&&SITE_CONFIG.title)|| (lang==='ja'?'2026 東日本・韓国 青年交流団':'2026 동일본·한국 청년교류단');
   refreshCurrentAreaLabels();
 }
 function enterAlbum(lang){changeLanguage(lang);intro.classList.add('hide');document.body.classList.remove('locked');setTimeout(()=>intro.remove(),700)}
 introLanguageButtons.forEach(btn=>btn.addEventListener('click',()=>enterAlbum(btn.dataset.introLang)));
 langButtons.forEach(btn=>btn.addEventListener('click',()=>changeLanguage(btn.dataset.lang)));
-changeLanguage('ja');
+changeLanguage((window.SITE_CONFIG&&SITE_CONFIG.defaultLanguage)||'ja');
 
 const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>entry.isIntersecting&&entry.target.classList.add('visible')),{threshold:.08});
 document.querySelectorAll('.section-reveal').forEach(el=>revealObserver.observe(el));
@@ -156,3 +156,8 @@ areaDownload?.addEventListener('click',event=>{
   if(url){window.open(url,'_blank','noopener,noreferrer')}
   else{alert(currentLanguage()==='ja'?'この地域の写真ダウンロードリンクは後日ご案内します。':'이 광역의 사진 다운로드 링크는 추후 안내될 예정입니다.')}
 });
+
+
+if(window.SITE_CONFIG){
+  document.documentElement.style.setProperty('--hero-image',`url("${SITE_CONFIG.heroImage}")`);
+}

@@ -207,3 +207,19 @@
 .farewell-copy span{
   margin-top:0;
 }
+
+
+:root{
+  --hero-image:url("assets/hero.jpg");
+}
+.hero-photo img{
+  content:var(--hero-image);
+}
+.hero-photo{
+  background-image:var(--hero-image);
+  background-size:cover;
+  background-position:center;
+}
+.hero-photo img{
+  opacity:0;
+}
