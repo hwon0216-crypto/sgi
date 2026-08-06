@@ -10,9 +10,8 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&amp;family=Noto+Sans+KR:wght@300;400;500;600;700&amp;family=Noto+Serif+JP:wght@500;600;700&amp;family=Noto+Serif+KR:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="style.css" rel="stylesheet">
-<link rel="stylesheet" href="hero-background.css">
 <link href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.css" rel="stylesheet">
-</link></link></head>
+</link></link><link href="day3-areas.css" rel="stylesheet"/></head>
 <body class="locked">
 <section aria-labelledby="introTitle" class="intro" id="intro">
 <div class="intro-inner">
@@ -45,11 +44,11 @@
 <button class="lang-btn active" data-lang="ja" type="button">日本語</button>
 </div>
 <div aria-label="일차별 바로가기" class="day-nav">
-<a href="#day1"><span data-ja="1日目" data-ko="1일차">1日目</span></a>
-<a href="#day2"><span data-ja="2日目" data-ko="2일차">2日目</span></a>
-<a href="#day3"><span data-ja="3日目" data-ko="3일차">3日目</span></a>
-<a href="#day4"><span data-ja="4日目" data-ko="4일차">4日目</span></a>
-<a href="#day5"><span data-ja="5日目" data-ko="5일차">5日目</span></a>
+<a href="#day1"><span data-ja="1日目" data-ko="1일차">1日目</span><small data-ja="8月20日" data-ko="8월 20일">8月20日</small></a>
+<a href="#day2"><span data-ja="2日目" data-ko="2일차">2日目</span><small data-ja="8月21日" data-ko="8월 21일">8月21日</small></a>
+<a href="#day3"><span data-ja="3日目" data-ko="3일차">3日目</span><small data-ja="8月22日" data-ko="8월 22일">8月22日</small></a>
+<a href="#day4"><span data-ja="4日目" data-ko="4일차">4日目</span><small data-ja="8月23日" data-ko="8월 23일">8月23日</small></a>
+<a href="#day5"><span data-ja="5日目" data-ko="5일차">5日目</span><small data-ja="8月24日" data-ko="8월 24일">8月24日</small></a>
 </div>
 </div>
 </nav>
@@ -81,8 +80,81 @@
 </section>
 <section class="day-section section-reveal" data-day-section="day3" id="day3">
 <div class="section-heading"><div class="day-number"><span>DAY</span><strong>3</strong></div><div class="day-heading-copy"><b data-ja="8月22日" data-ko="8월 22일">8月22日</b><p data-ja="友情がさらに深まった時間" data-ko="우정이 더욱 깊어진 시간">友情がさらに深まった時間</p></div></div>
-<div class="instagram-grid" data-day="day3"></div>
-<div class="download-zone"><a class="day-download" data-download-day="day3" href="#"><span class="download-icon">↓</span><span data-ja="3日目の写真をすべてダウンロード" data-ko="3일차 사진 전체 다운로드">3日目の写真をすべてダウンロード</span></a></div>
+
+
+
+<div class="area-selector" id="day3AreaSelector">
+<div class="area-selector-intro">
+<p data-ja="交流地域を選択してください" data-ko="교류 광역을 선택해 주세요">交流地域を選択してください</p>
+<span data-ja="地域を選択すると、その地域の写真だけを表示します。" data-ko="광역을 선택하면 해당 사진만 불러옵니다.">地域を選択すると、その地域の写真だけを表示します。</span>
+</div>
+<div class="area-card-grid">
+<button class="area-card" data-area-key="north-seoul" type="button">
+<b data-ja="北ソウル" data-ko="북서울">北ソウル</b>
+<strong data-ja="東北 交流交歓会" data-ko="도호쿠 교류교환회">東北 交流交歓会</strong>
+<small data-ja="ソウル1・2・3・4・8" data-ko="서울1·2·3·4·8">ソウル1・2・3・4・8</small>
+</button>
+<button class="area-card" data-area-key="south-seoul" type="button">
+<b data-ja="南ソウル" data-ko="남서울">南ソウル</b>
+<strong data-ja="東海道 交流交歓会" data-ko="도카이도 교류교환회">東海道 交流交歓会</strong>
+<small data-ja="ソウル5・6・7・9・江南" data-ko="서울5·6·7·9·강남">ソウル5・6・7・9・江南</small>
+</button>
+<button class="area-card" data-area-key="gyeonggi" type="button">
+<b data-ja="京畿" data-ko="경기">京畿</b>
+<strong data-ja="関東 交流交歓会" data-ko="간토 교류교환회">関東 交流交歓会</strong>
+<small data-ja="京畿1・2・3・7・9" data-ko="경기1·2·3·7·9">京畿1・2・3・7・9</small>
+</button>
+<button class="area-card" data-area-key="gyeonggang" type="button">
+<b data-ja="京江" data-ko="경강">京江</b>
+<strong data-ja="信越 交流交歓会" data-ko="신에쓰 교류교환회">信越 交流交歓会</strong>
+<small data-ja="東ソウル・京畿6・8・江原1・2" data-ko="동서울·경기6·8·강원1·2">東ソウル・京畿6・8・江原1・2</small>
+</button>
+<button class="area-card" data-area-key="gyeongin" type="button">
+<b data-ja="京仁" data-ko="경인">京仁</b>
+<strong data-ja="総東京 交流交歓会" data-ko="총도쿄 교류교환회">総東京 交流交歓会</strong>
+<small data-ja="京畿4・5・仁川1・2" data-ko="경기4·5·인천1·2">京畿4・5・仁川1・2</small>
+</button>
+<button class="area-card" data-area-key="daejeon" type="button">
+<b data-ja="大田" data-ko="대전">大田</b>
+<strong data-ja="北海道 交流交歓会" data-ko="홋카이도 교류교환회">北海道 交流交歓会</strong>
+<small data-ja="忠南・忠北・大田" data-ko="충남·충북·대전">忠南・忠北・大田</small>
+</button>
+<button class="area-card" data-area-key="daegu" type="button">
+<b data-ja="大邱" data-ko="대구">大邱</b>
+<strong data-ja="東京 交流交歓会" data-ko="도쿄 교류교환회">東京 交流交歓会</strong>
+<small data-ja="大邱1～4・慶北1～3・浦項" data-ko="대구1~4·경북1~3·포항">大邱1～4・慶北1～3・浦項</small>
+</button>
+<button class="area-card" data-area-key="busan" type="button">
+<b data-ja="釜山" data-ko="부산">釜山</b>
+<strong data-ja="中部 交流交歓会" data-ko="주부 교류교환회">中部 交流交歓会</strong>
+<small data-ja="釜山1～5・蔚山1・2・慶南1～4" data-ko="부산1~5·울산1·2·경남1~4">釜山1～5・蔚山1・2・慶南1～4</small>
+</button>
+<button class="area-card" data-area-key="gwangju" type="button">
+<b data-ja="光州" data-ko="광주">光州</b>
+<strong data-ja="東京 交流交歓会" data-ko="도쿄 교류교환회">東京 交流交歓会</strong>
+<small data-ja="全南1・2・全北・光州・済州" data-ko="전남1·2·전북·광주·제주">全南1・2・全北・光州・済州</small>
+</button>
+</div>
+</div>
+<div class="area-gallery-view" hidden="" id="day3AreaView">
+<div class="area-gallery-toolbar">
+<button class="area-back-button" id="day3AreaBack" type="button">
+<span aria-hidden="true">←</span>
+<span data-ja="地域選択" data-ko="광역 선택">地域選択</span>
+</button>
+<div class="area-current-title">
+<b id="day3AreaName"></b>
+<span id="day3ExchangeName"></span>
+</div>
+</div>
+<div class="instagram-grid" data-day="day3-area"></div>
+<div class="download-zone">
+<a class="day-download" data-download-area="" href="#" id="day3AreaDownload">
+<span class="download-icon">↓</span>
+<span data-ja="選択地域の写真をすべてダウンロード" data-ko="선택 광역 사진 전체 다운로드">選択地域の写真をすべてダウンロード</span>
+</a>
+</div>
+</div>
 </section>
 <section class="day-section section-reveal" data-day-section="day4" id="day4">
 <div class="section-heading"><div class="day-number"><span>DAY</span><strong>4</strong></div><div class="day-heading-copy"><b data-ja="8月23日" data-ko="8월 23일">8月23日</b><p data-ja="互いの心をつないだ一日" data-ko="서로의 마음을 이어간 하루">互いの心をつないだ一日</p></div></div>

@@ -1,0 +1,143 @@
+/* 3일차 광역 선택 전용 */
+.area-selector{
+  padding:30px 5vw 56px;
+}
+
+.area-selector-intro{
+  margin-bottom:22px;
+  text-align:center;
+}
+
+.area-selector-intro p{
+  margin:0 0 7px;
+  color:var(--navy);
+  font-family:var(--serif);
+  font-size:21px;
+  font-weight:600;
+}
+
+.area-selector-intro span{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.7;
+}
+
+.area-card-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+
+.area-card{
+  min-width:0;
+  min-height:128px;
+  padding:17px 12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  gap:7px;
+  border:1px solid #cfe3f8;
+  border-radius:17px;
+  background:rgba(255,255,255,.96);
+  color:var(--navy);
+  text-align:left;
+  box-shadow:0 9px 24px rgba(57,106,148,.07);
+  cursor:pointer;
+}
+
+.area-card:active{
+  transform:scale(.985);
+}
+
+.area-card b{
+  color:var(--blue);
+  font-size:17px;
+}
+
+.area-card strong{
+  font-size:12px;
+  line-height:1.45;
+}
+
+.area-card small{
+  color:#71869b;
+  font-size:9px;
+  line-height:1.55;
+}
+
+.area-gallery-view[hidden]{
+  display:none;
+}
+
+.area-gallery-toolbar{
+  min-height:86px;
+  padding:18px 5vw;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.area-back-button{
+  flex:0 0 auto;
+  padding:9px 13px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid #cfe3f8;
+  border-radius:999px;
+  background:#fff;
+  color:var(--blue);
+  font:700 11px var(--sans);
+  cursor:pointer;
+}
+
+.area-current-title{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:3px;
+  text-align:right;
+}
+
+.area-current-title b{
+  color:var(--blue);
+  font-size:17px;
+}
+
+.area-current-title span{
+  color:#5e7690;
+  font-size:11px;
+}
+
+#day3 .gallery-empty{
+  background:rgba(255,255,255,.72);
+}
+
+@media(max-width:520px){
+  .area-selector{
+    padding:25px 12px 46px;
+  }
+
+  .area-card-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+
+  .area-card{
+    min-height:116px;
+    padding:15px 11px;
+    border-radius:15px;
+  }
+
+  .area-card b{
+    font-size:16px;
+  }
+
+  .area-gallery-toolbar{
+    min-height:78px;
+    padding:15px 12px;
+  }
+}
