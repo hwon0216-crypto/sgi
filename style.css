@@ -163,3 +163,28 @@
   font-size:11px !important;
   font-weight:700 !important;
 }
+
+/* Hero height refinement: 약 16:9 배너 형태 */
+.hero{
+  height:clamp(360px,56.25vw,430px) !important;
+  min-height:0 !important;
+}
+
+.hero-copy{
+  bottom:11% !important;
+}
+
+.scroll-cue{
+  bottom:8% !important;
+}
+
+@media(max-width:520px){
+  .hero{
+    height:clamp(340px,92vw,390px) !important;
+  }
+
+  .hero-copy{
+    bottom:10% !important;
+  }
+}
+
