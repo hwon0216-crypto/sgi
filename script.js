@@ -4,6 +4,7 @@ const langButtons=document.querySelectorAll('.lang-btn');
 const dayLinks=document.querySelectorAll('.day-nav a');
 const galleryData=window.GALLERY_DATA||{};
 const myboxLinks=window.MYBOX_LINKS||{};
+let currentAreaKey='';
 
 function currentLanguage(){return document.documentElement.lang==='ko'?'ko':'ja'}
 function changeLanguage(lang){
@@ -96,7 +97,6 @@ const areaMeta={
   'gwangju':{ko:'광주',ja:'光州',exchangeKo:'도쿄 교류교환회',exchangeJa:'東京 交流交歓会'}
 };
 
-let currentAreaKey='';
 const areaSelector=document.getElementById('day3AreaSelector');
 const areaView=document.getElementById('day3AreaView');
 const areaGrid=document.querySelector('[data-day="day3-area"]');
