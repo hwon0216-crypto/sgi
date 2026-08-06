@@ -23,7 +23,7 @@ function enterAlbum(lang) {
   changeLanguage(lang);
   intro.classList.add('hide');
   document.body.classList.remove('locked');
-  setTimeout(() => { intro.style.display = 'none'; }, 850);
+  setTimeout(() => { intro.style.display = 'none'; }, 1000);
 }
 
 introLanguageButtons.forEach((button) => {

@@ -277,3 +277,153 @@ body.lightbox-open{overflow:hidden;touch-action:none}
   .intro-language-btn{min-height:70px;padding:10px 14px}
   .day-section,.day-section.reverse{padding-top:62px;padding-bottom:132px}
 }
+
+/* 2026-08 intro v2: original bright concept + language choice */
+.intro{
+  padding:24px 22px;
+  color:#162642;
+  background-color:#eef8ff;
+  background-image:
+    linear-gradient(145deg,rgba(255,255,255,.90),rgba(232,246,255,.82) 58%,rgba(255,249,221,.72)),
+    url('assets/intro-bg.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  overflow:hidden;
+}
+.intro::before{
+  display:block;
+  width:250px;
+  height:250px;
+  right:-105px;
+  top:-95px;
+  background:rgba(31,124,238,.13);
+  filter:none;
+}
+.intro::after{
+  display:block;
+  width:220px;
+  height:220px;
+  left:-105px;
+  bottom:-95px;
+  background:rgba(255,206,69,.19);
+  filter:none;
+}
+.intro-v2{
+  position:relative;
+  z-index:2;
+  width:min(88vw,470px);
+  padding:18px 0 10px;
+  text-align:center;
+}
+.intro-v2 .intro-eyebrow{
+  margin:0 0 28px;
+  color:#1476e8;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.27em;
+  line-height:1.4;
+}
+.intro-v2 h1{
+  margin:0;
+  color:#172742;
+  font-family:'Noto Serif JP','Noto Serif KR',serif;
+  font-size:clamp(37px,10.8vw,60px);
+  font-weight:600;
+  line-height:1.22;
+  letter-spacing:-.065em;
+  white-space:normal;
+  word-break:keep-all;
+  overflow-wrap:normal;
+  text-wrap:balance;
+}
+.intro-v2 .intro-line{
+  width:64px;
+  height:3px;
+  margin:30px auto 26px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#1f7ceb 0 34%,#ffd34f 34% 67%,#ff5c56 67%);
+}
+.intro-v2 .intro-guide{
+  margin:0 0 22px;
+  color:#60738e;
+  font-size:13px;
+  line-height:1.65;
+}
+.intro-v2 .intro-guide span{
+  color:#8797aa;
+  font-size:12px;
+}
+.intro-language-list-v2{
+  display:grid;
+  gap:12px;
+}
+.intro-language-list-v2 .intro-language-btn{
+  width:100%;
+  min-height:68px;
+  padding:10px 17px;
+  display:grid;
+  grid-template-columns:38px 1fr 28px;
+  align-items:center;
+  border-radius:18px;
+  cursor:pointer;
+  transition:transform .22s ease,box-shadow .22s ease,background .22s ease;
+}
+.intro-language-list-v2 .intro-language-btn:active{transform:scale(.985)}
+.intro-language-list-v2 .intro-language-primary,
+.intro-language-list-v2 .intro-language-secondary{
+  border:1px solid rgba(35,121,232,.18);
+  background:rgba(255,255,255,.92);
+  color:#183354;
+  box-shadow:0 10px 24px rgba(44,91,132,.08);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.intro-language-list-v2 .intro-language-btn:hover,
+.intro-language-list-v2 .intro-language-btn:focus-visible{
+  border-color:rgba(35,121,232,.42);
+  background:#fff;
+  box-shadow:0 13px 28px rgba(44,91,132,.13);
+}
+.intro-language-list-v2 .intro-language-code{
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:.06em;
+  opacity:.9;
+}
+.intro-language-list-v2 .intro-language-copy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:3px;
+  text-align:left;
+}
+.intro-language-list-v2 .intro-language-copy b{font-size:15px;line-height:1.2}
+.intro-language-list-v2 .intro-language-copy small{font-size:9px;letter-spacing:.08em;opacity:.65}
+.intro-language-list-v2 .intro-language-arrow{font-size:21px}
+.intro-v2 .intro-date{
+  margin:25px 0 0;
+  color:#8295aa;
+  font-size:10px;
+  letter-spacing:.27em;
+}
+.intro-welcome{display:none}
+@media(max-width:420px){
+  .intro{padding:18px 17px}
+  .intro-v2{width:min(92vw,430px)}
+  .intro-v2 .intro-eyebrow{margin-bottom:24px;font-size:10px}
+  .intro-v2 h1{font-size:clamp(34px,10.6vw,46px);line-height:1.25}
+  .intro-v2 .intro-line{margin:25px auto 22px}
+  .intro-language-list-v2 .intro-language-btn{min-height:64px;border-radius:16px}
+}
+
+/* restore clear separation between each day section */
+.day-section,
+.day-section.reverse{
+  background:#fff;
+  padding-top:86px;
+  border-top:40px solid var(--sky);
+}
+.day-section:first-of-type{border-top:0}
+.section-heading{background:#fff;padding-top:0}
+.day-download{margin-bottom:0}
