@@ -162,7 +162,6 @@ if(window.SITE_CONFIG){
   document.documentElement.style.setProperty('--hero-image',`url("${SITE_CONFIG.heroImage}")`);
 }
 
-
 /* BRAND TOP RESET */
 const brandLink = document.querySelector('.brand');
 
@@ -175,8 +174,5 @@ brandLink?.addEventListener('click', event => {
     history.replaceState(null, '', window.location.pathname + window.location.search);
   }
 
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+  window.scrollTo(0, 0);
 });
