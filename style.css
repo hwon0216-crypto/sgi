@@ -164,27 +164,46 @@
   font-weight:700 !important;
 }
 
-/* Hero height refinement: 약 16:9 배너 형태 */
+
+
+
+
+/* === v1.1 tweaks === */
+
+/* active day */
+.top-bar .day-nav a.active{
+  background:#2379e8 !important;
+  color:#fff !important;
+  box-shadow:0 8px 18px rgba(35,121,232,.28);
+}
+.top-bar .day-nav a.active span,
+.top-bar .day-nav a.active small{
+  color:#fff !important;
+}
+
+/* restore hero */
 .hero{
-  height:clamp(360px,56.25vw,430px) !important;
-  min-height:0 !important;
+  height:100svh !important;
+  min-height:650px !important;
 }
-
 .hero-copy{
-  bottom:11% !important;
+  bottom:13vh !important;
 }
-
 .scroll-cue{
-  bottom:8% !important;
+  bottom:7vh !important;
 }
 
-@media(max-width:520px){
-  .hero{
-    height:clamp(340px,92vw,390px) !important;
-  }
-
-  .hero-copy{
-    bottom:10% !important;
-  }
+/* farewell spacing */
+.farewell-copy{
+  top:18vh;
+  bottom:auto !important;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
 }
-
+.farewell-copy h3{
+  margin:14px 0 14px;
+}
+.farewell-copy span{
+  margin-top:0;
+}
