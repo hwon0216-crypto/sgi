@@ -717,3 +717,55 @@ h1,h2,h3,
   }
 }
 
+
+
+
+/* === Area selector readability upgrade === */
+.area-selector-intro{
+  padding-bottom:12px;
+}
+.area-selector-intro p{
+  font-size:28px !important;
+  margin-bottom:10px !important;
+}
+.area-selector-intro span{
+  font-size:15px !important;
+  line-height:1.7 !important;
+}
+
+.area-grid{
+  gap:18px !important;
+}
+
+.area-card{
+  padding:24px !important;
+  min-height:140px !important;
+}
+
+.area-card b{
+  font-size:22px !important;
+  line-height:1.2 !important;
+}
+
+.area-card strong{
+  display:block;
+  margin-top:10px;
+  font-size:16px !important;
+  line-height:1.35 !important;
+}
+
+.area-card small{
+  display:block;
+  margin-top:10px;
+  font-size:12px !important;
+  line-height:1.5 !important;
+}
+
+@media(max-width:520px){
+  .area-selector-intro p{font-size:25px !important;}
+  .area-selector-intro span{font-size:14px !important;}
+  .area-card{padding:20px !important; min-height:128px !important;}
+  .area-card b{font-size:20px !important;}
+  .area-card strong{font-size:15px !important;}
+  .area-card small{font-size:11px !important;}
+}
